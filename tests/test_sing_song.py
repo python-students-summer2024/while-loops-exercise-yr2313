@@ -1,4 +1,5 @@
 import pytest
+import string
 
 class Tests:
 
@@ -35,8 +36,16 @@ Take it down, pass it around, no more bottles of beer on the wall!
     actual = captured.out.lower().strip()  # remove leading/trailing whitespace
 
     # remove multiple whitespaces
-    actual = ' '.join(actual.split())
-    expected = ' '.join(expected.split())
+    actual = ' '.join(actual.split()).strip()
+    expected = ' '.join(expected.split()).strip()
+
+    # remove all punctuation
+    actual = actual.translate(str.maketrans('', '', string.punctuation))
+    expected = expected.translate(str.maketrans('', '', string.punctuation))
+
+    # convert to lowercase
+    actual = actual.lower()
+    expected = expected.lower()
 
     # make sure the program only asked for input until a valid one was given
     assert actual.lower() == expected.lower()
@@ -109,11 +118,20 @@ Take it down, pass it around, no more bottles of beer on the wall!
     actual = captured.out.lower().strip()  # remove leading/trailing whitespace
 
     # remove multiple whitespaces
-    actual = ' '.join(actual.split())
-    expected = ' '.join(expected.split())
+    actual = ' '.join(actual.split()).strip()
+    expected = ' '.join(expected.split()).strip()
 
+    # remove all punctuation
+    actual = actual.translate(str.maketrans('', '', string.punctuation))
+    expected = expected.translate(str.maketrans('', '', string.punctuation))
+
+    # convert to lowercase
+    actual = actual.lower()
+    expected = expected.lower()
+    
     # make sure the program only asked for input until a valid one was given
     assert actual.lower() == expected.lower()
+
 
   def test_while_loop_flag_version_output(self, capsys, monkeypatch):
     """
@@ -148,8 +166,17 @@ Take it down, pass it around, no more bottles of beer on the wall!
     actual = captured.out.lower().strip()  # remove leading/trailing whitespace
 
     # remove multiple whitespaces
-    actual = ' '.join(actual.split())
-    expected = ' '.join(expected.split())
+    actual = ' '.join(actual.split()).strip()
+    expected = ' '.join(expected.split()).strip()
 
+    # remove all punctuation
+    actual = actual.translate(str.maketrans('', '', string.punctuation))
+    expected = expected.translate(str.maketrans('', '', string.punctuation))
+
+    # convert to lowercase
+    actual = actual.lower()
+    expected = expected.lower()
+    
     # make sure the program only asked for input until a valid one was given
     assert actual.lower() == expected.lower()
+
